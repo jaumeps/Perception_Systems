@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/webcam_point_features/src/point_features.cpp
+opencv2/opencv.hpp
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/webcam_point_features/src/opencv2/opencv.hpp
+opencv2/core.hpp
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/webcam_point_features/src/opencv2/core.hpp
+opencv2/features2d.hpp
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/webcam_point_features/src/opencv2/features2d.hpp
+iostream
+-
+cstdlib
+-
+vector
+-
+
