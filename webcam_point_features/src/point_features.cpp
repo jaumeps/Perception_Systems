@@ -10,13 +10,14 @@
 #include <vector>
 
 //consts
-const unsigned int MIN_NUM_FEATURES = 300; //minimum number of point fetaures
+const unsigned int MIN_NUM_FEATURES = 5; //minimum number of point fetaures
 
 int main(int argc, char *argv[])
 {
     cv::VideoCapture camera; //OpenCV video capture object
     cv::Mat image; //OpenCV image object
 	int cam_id; //camera id . Associated to device number in /dev/videoX
+    //cv::Mat gray_image;
     cv::Ptr<cv::ORB> orb_detector = cv::ORB::create(); //ORB point feature detector
     orb_detector->setMaxFeatures(MIN_NUM_FEATURES);
     std::vector<cv::KeyPoint> point_set; //set of point features
@@ -62,7 +63,9 @@ int main(int argc, char *argv[])
         //clear previous points
         point_set.clear();
 
-        //detect and compute(extract) features
+      	//cv::cvtColor(image, gray_image, CV_BGR2GRAY);	
+ 
+	//detect and compute(extract) features
         orb_detector->detectAndCompute(image, cv::noArray(), point_set, descriptor_set);
 
         //draw points on the image

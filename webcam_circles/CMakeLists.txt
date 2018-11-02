@@ -12,6 +12,8 @@ INCLUDE_DIRECTORIES(${OpenCV_INCLUDE_DIR})
 
 #Create an executable
 ADD_EXECUTABLE(${PROJECT_NAME} src/circle_detector.cpp)
+ADD_EXECUTABLE(mod_circle_detector src/mod_circle_detector.cpp)
+
 
 #Link with libraries
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${OpenCV_LIBS})

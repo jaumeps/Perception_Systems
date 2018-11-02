@@ -49,4 +49,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/circle_detector.dir/DependInfo.cmake"
+  "CMakeFiles/mod_circle_detector.dir/DependInfo.cmake"
   )

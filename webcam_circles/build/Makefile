@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perce
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -123,6 +123,19 @@ circle_detector/fast:
 	$(MAKE) -f CMakeFiles/circle_detector.dir/build.make CMakeFiles/circle_detector.dir/build
 .PHONY : circle_detector/fast
 
+#=============================================================================
+# Target rules for targets named mod_circle_detector
+
+# Build rule for target.
+mod_circle_detector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mod_circle_detector
+.PHONY : mod_circle_detector
+
+# fast build rule for target.
+mod_circle_detector/fast:
+	$(MAKE) -f CMakeFiles/mod_circle_detector.dir/build.make CMakeFiles/mod_circle_detector.dir/build
+.PHONY : mod_circle_detector/fast
+
 src/circle_detector.o: src/circle_detector.cpp.o
 
 .PHONY : src/circle_detector.o
@@ -150,18 +163,49 @@ src/circle_detector.cpp.s:
 	$(MAKE) -f CMakeFiles/circle_detector.dir/build.make CMakeFiles/circle_detector.dir/src/circle_detector.cpp.s
 .PHONY : src/circle_detector.cpp.s
 
+src/mod_circle_detector.o: src/mod_circle_detector.cpp.o
+
+.PHONY : src/mod_circle_detector.o
+
+# target to build an object file
+src/mod_circle_detector.cpp.o:
+	$(MAKE) -f CMakeFiles/mod_circle_detector.dir/build.make CMakeFiles/mod_circle_detector.dir/src/mod_circle_detector.cpp.o
+.PHONY : src/mod_circle_detector.cpp.o
+
+src/mod_circle_detector.i: src/mod_circle_detector.cpp.i
+
+.PHONY : src/mod_circle_detector.i
+
+# target to preprocess a source file
+src/mod_circle_detector.cpp.i:
+	$(MAKE) -f CMakeFiles/mod_circle_detector.dir/build.make CMakeFiles/mod_circle_detector.dir/src/mod_circle_detector.cpp.i
+.PHONY : src/mod_circle_detector.cpp.i
+
+src/mod_circle_detector.s: src/mod_circle_detector.cpp.s
+
+.PHONY : src/mod_circle_detector.s
+
+# target to generate assembly for a file
+src/mod_circle_detector.cpp.s:
+	$(MAKE) -f CMakeFiles/mod_circle_detector.dir/build.make CMakeFiles/mod_circle_detector.dir/src/mod_circle_detector.cpp.s
+.PHONY : src/mod_circle_detector.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... circle_detector"
 	@echo "... edit_cache"
+	@echo "... circle_detector"
+	@echo "... rebuild_cache"
+	@echo "... mod_circle_detector"
 	@echo "... src/circle_detector.o"
 	@echo "... src/circle_detector.i"
 	@echo "... src/circle_detector.s"
+	@echo "... src/mod_circle_detector.o"
+	@echo "... src/mod_circle_detector.i"
+	@echo "... src/mod_circle_detector.s"
 .PHONY : help
 
 
