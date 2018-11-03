@@ -1,0 +1,3 @@
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/webcam_color_detector/build/CMakeFiles/rebuild_cache.dir
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/webcam_color_detector/build/CMakeFiles/color_detector.dir
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/webcam_color_detector/build/CMakeFiles/edit_cache.dir
