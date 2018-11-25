@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/histogram/src/histogram.cpp
+opencv2/opencv.hpp
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/histogram/src/opencv2/opencv.hpp
+opencv2/imgproc.hpp
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/histogram/src/opencv2/imgproc.hpp
+opencv2/highgui.hpp
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/histogram/src/opencv2/highgui.hpp
+opencv2/imgcodecs.hpp
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/histogram/src/opencv2/imgcodecs.hpp
+iostream
+-
+stdio.h
+/home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/histogram/src/stdio.h
+
