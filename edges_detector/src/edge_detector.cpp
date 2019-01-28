@@ -20,6 +20,8 @@ int ratio = 3; //ratio between lowerlimit and upperlimit
 int size_Kernel = 3;
 /*Information to CANNY with C++
 
+//int minNeighbors=2;
+
 Filter out any noise. The Gaussian filter is used for this purpose.
 
 Hysteresis: The final step. Canny does use two thresholds (upper and lower):
@@ -95,7 +97,7 @@ int main(int argc, char *argv[])
 	{
 	     //Read image and check it. Blocking call up to a new image arrives from camera.
         if(!camera.read(image))
-		{
+		    {
             cout << "No image" << endl;
             waitKey();
         }

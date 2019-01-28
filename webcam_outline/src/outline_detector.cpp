@@ -1,5 +1,5 @@
 
-//OpenCV 
+//OpenCV
 #include "opencv2/opencv.hpp"
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
@@ -12,7 +12,7 @@
 
 //constants
 const int GAUSSIAN_BLUR_SIZE = 7;
-const double GAUSSIAN_BLUR_SIGMA = 2; 
+const double GAUSSIAN_BLUR_SIGMA = 2;
 const double CANNY_EDGE_TH = 150;
 const double HOUGH_ACCUM_RESOLUTION = 2;
 const double MIN_CIRCLE_DIST = 40;
@@ -20,94 +20,67 @@ const double HOUGH_ACCUM_TH = 70;
 const int MIN_RADIUS = 10;
 const int MAX_RADIUS = 100;
 
+using namespace std;
+using namespace cv;
 
+//Variables
+VideoCapture camera;
+Mat image, gray_image, imgCanny;
+int cam_id;
 
-int main(int argc, char *argv[]) 
+int threshold1=188;
+int threshold2=349;
+
+int main(int argc, char *argv[])
 {
-    cv::VideoCapture camera; //OpenCV video capture object
-    cv::Mat image; //OpenCV image object
-	int cam_id; //camera id . Associated to device number in /dev/videoX
-    cv::Mat gray_image;
-    cv::Mat imgBlurred;
-    cv::Mat imgCanny;
-    std::vector<cv::Vec3f> circles;
-    cv::Point center;
-    int radius;
 
 	//check user args
 	switch(argc)
 	{
-		case 1: //no argument provided, so try /dev/video0
-			cam_id = 0;  
-			break; 
-		case 2: //an argument is provided. Get it and set cam_id
+		case 1:       //no argument provided, so try /dev/video0
+			cam_id = 0;
+			break;
+		case 2:       //an argument is provided. Get it and set cam_id
 			cam_id = atoi(argv[1]);
-			break; 
-		default: 
-			std::cout << "Invalid number of arguments. Call program as: webcam_capture [video_device_id]. " << std::endl; 
-			std::cout << "EXIT program." << std::endl; 
-			break; 
+			break;
+		default:
+			cout << "Invalid number of arguments. Call program as: webcam_capture [video_device_id]. " << endl;
+			cout << "EXIT program." << endl;
+			break;
 	}
-	
-    //advertising to the user 
-    std::cout << "Opening video device " << cam_id << std::endl;
+
+    //advertising to the user
+    cout << "Opening video device " << cam_id << endl;
 
     //open the video stream and make sure it's opened
-    if( !camera.open(cam_id) ) 
-	{
+    if( !camera.open(cam_id) )
+	  {
         std::cout << "Error opening the camera. May be invalid device id. EXIT program." << std::endl;
         return -1;
     }
 
     //Process loop. Capture and point feature extraction. User can quit pressing a key
     while(1)
-	{
-	//Read image and check it. Blocking call up to a new image arrives from camera.
-        if(!camera.read(image)) 
-		{
-            std::cout << "No image" << std::endl;
-            cv::waitKey();
+	   {
+	      //Read image and check it. Blocking call up to a new image arrives from camera.
+        if(!camera.read(image))
+		    {
+            cout << "No image" << endl;
+            waitKey();
         }
-        		
-     //**************** Find circles in the image ****************************
-        
-        //clear previous circles
-        circles.clear();
 
-        // If input image is RGB, convert it to gray 
-        cv::cvtColor(image, gray_image, CV_BGR2GRAY);
+        // If input image is RGB, convert it to gray
+        cvtColor(image, gray_image, CV_BGR2GRAY);
 
-        //Reduce the noise so we avoid false circle detection
-        cv::GaussianBlur( gray_image, imgBlurred, cv::Size(GAUSSIAN_BLUR_SIZE, GAUSSIAN_BLUR_SIZE), GAUSSIAN_BLUR_SIGMA );
+	      Canny(gray_image, imgCanny, threshold1, threshold2);
 
-        //Apply the Hough Transform to find the circles
-        cv::HoughCircles( imgBlurred, circles, CV_HOUGH_GRADIENT, HOUGH_ACCUM_RESOLUTION, MIN_CIRCLE_DIST, CANNY_EDGE_TH, HOUGH_ACCUM_TH, MIN_RADIUS, MAX_RADIUS );
-        
-	//NEW
-	cv::Canny(gray_image, imgCanny, 50, 100); 
- 
-	//draw circles on the image      
-        for(unsigned int ii = 0; ii < circles.size(); ii++ )
-        {
-            if ( circles[ii][0] != -1 )
-            {
-                    center = cv::Point(cvRound(circles[ii][0]), cvRound(circles[ii][1]));
-                    radius = cvRound(circles[ii][2]);
-                    cv::circle(image, center, 100, cv::Scalar(0,255,0), -1, 8, 0 );// circle center in green
-                    cv::circle(image, center, radius, cv::Scalar(0,0,255), 3, 8, 0 );// circle perimeter in red
-            }
-        }      
-        
-    //***********************************************************************
-    
         //show image
-        cv::imshow("Output Window", image);	
-	/*
-	cv::imshow("gray_image", gray_image);
-	cv::imshow("imgBlurred", imgBlurred);
-	*/
-	cv::imshow("Outline image", imgCanny);
-	//Waits 30 millisecond to check if a key has been pressed. If so, breaks the loop. Otherwise continues.
+	      imshow("Outline image", imgCanny);
+        createTrackbar("Threshold1", "Outline image", &threshold1, 400);
+        createTrackbar("Threshold2", "Outline image", &threshold2, 400);
+
+
+        //Waits 30 millisecond to check if a key has been pressed. If so, breaks the loop. Otherwise continues.
         if( (unsigned char)(cv::waitKey(30) & 0xff) == 'q') break;
 	}
 }

@@ -14,8 +14,8 @@ using namespace cv;
 int main(int argc, char *argv[])
 {
   //Load image
-  //CommandLineParser parser( argc, argv, "{@input | ../histogram/imag/calella_palafrugell.jpg | input image}" );
-  CommandLineParser parser( argc, argv, "{@input | /home/jaume/Imágenes/calella_palafrugell.jpg | input image}" );
+  CommandLineParser parser( argc, argv, "{@input | /home/jaume/Documentos/master/1Fonaments_de_la_robotica/Perception_Systems/Perception_Systems/histogram/imag/calella_palafrugell.jpg | input image}" );
+  //CommandLineParser parser( argc, argv, "{@input | /home/jaume/Imágenes/calella_palafrugell.jpg | input image}" );
   Mat src = imread( parser.get<String>( "@input" ), IMREAD_COLOR );
   if( src.empty() )
     {
